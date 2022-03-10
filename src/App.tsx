@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+import BreakdownTable from './components/BreakdownTable'
+import MoneyForm from './components/MoneyForm'
+import NewPersonForm from './components/NewPersonForm'
+import { formatMoney } from './money'
+import type { Person, BreakdownPerson } from './types'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function getBreakdown(tipTotal: number, people: Person[]) {
+  let stakeTotal = people.reduce((sum, p) => sum + p.stake, 0)
+
+  if (stakeTotal < 4) stakeTotal = 4
+
+  let breakdown: BreakdownPerson[] = []
+  let cutTotal = 0
+
+  people.forEach(p => {
+    const cut = Math.round(tipTotal * p.stake / stakeTotal)
+    const b: BreakdownPerson = { ...p, cut }
+
+    breakdown.push(b)
+    cutTotal += cut
+  })
+
+  let delta = tipTotal - cutTotal
+
+  if (delta < 0) {
+    breakdown = breakdown.map(p => ({ ...p, cut: p.cut - 1 }))
+    delta += breakdown.length
+  }
+
+  return [breakdown, delta] as const
 }
 
-export default App;
+function App() {
+  const [hasBegun, setHasBegun] = useState(false)
+  const [tips, setTips] = useState<number | null>(null)
+  const [people, setPeople] = useState<Person[]>([])
+
+  const begin = () => setHasBegun(true)
+  const moneyForm = (<MoneyForm value={tips} onChange={setTips} onSubmit={begin} />)
+
+  // hide UI until money amount has been entered
+  if (!hasBegun) return moneyForm
+
+  const [breakdown, unassigned] = getBreakdown(tips || 0, people)
+
+  return (
+    <>
+      {moneyForm}
+      <BreakdownTable list={breakdown} onChange={setPeople} />
+      <div className="note">
+        {unassigned > 0 && `${formatMoney(unassigned)} is unassigned`}
+      </div>
+      <NewPersonForm onSubmit={p => setPeople(prev => [...prev, p])} />
+    </>
+  )
+}
+
+export default App
