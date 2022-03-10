@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tip-split/static/css/main.593a3bf6.css",
+    "main.js": "/tip-split/static/js/main.f5cf4109.js",
+    "index.html": "/tip-split/index.html",
+    "main.593a3bf6.css.map": "/tip-split/static/css/main.593a3bf6.css.map",
+    "main.f5cf4109.js.map": "/tip-split/static/js/main.f5cf4109.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.593a3bf6.css",
+    "static/js/main.f5cf4109.js"
+  ]
+}

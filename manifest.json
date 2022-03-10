@@ -1,0 +1,8 @@
+{
+  "short_name": "Tip Split",
+  "name": "Tip Split",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#333333",
+  "background_color": "#eeeeee"
+}
