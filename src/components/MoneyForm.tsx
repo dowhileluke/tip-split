@@ -22,7 +22,7 @@ export default function MoneyForm({ value, onChange, onSubmit }: MoneyFormProps)
     <form onSubmit={handleSubmit}>
       <label>
         Total Tips:
-        <MoneyInput value={value} onChange={onChange} onBlur={submit} />
+        <MoneyInput value={value} onChange={onChange} onBlur={submit} placeholder="Enter amount" />
       </label>
     </form>
   )

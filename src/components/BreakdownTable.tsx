@@ -28,7 +28,7 @@ export default function BreakdownTable({ list, onChange }: BreakdownTableProps) 
       <thead>
         <tr>
           <th>Name</th>
-          <th>Stake</th>
+          <th>Points</th>
           <th>Cut</th>
         </tr>
       </thead>
@@ -37,7 +37,7 @@ export default function BreakdownTable({ list, onChange }: BreakdownTableProps) 
           <tr key={p.id}>
             <td>{p.name}</td>
             <td>
-              <StakeSelect value={p.stake} onChange={s => update(i, s)} zero="delete" />
+              <StakeSelect value={p.stake} onChange={s => update(i, s)} zero="X" />
             </td>
             <td className="money">{formatMoney(p.cut)}</td>
           </tr>

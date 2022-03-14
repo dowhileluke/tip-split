@@ -2,9 +2,25 @@ body {
   background-color: #eee;
 }
 
-body, button, input, select {
+body, input, select, button {
   font-size: 16pt;
   color: #333;
+}
+
+input, select, button {
+  display: block;
+  background-color: #fff;
+  border: 2px solid #555;
+  border-radius: 4px;
+  padding: 4px 12px;
+}
+
+.accent {
+  color: #090;
+}
+
+button {
+  border-radius: 12px;
 }
 
 form {
@@ -22,15 +38,8 @@ input {
   width: 100%;
 }
 
-select {
-  color: #090;
-  background-color: #fff;
-}
-
-input, select {
-  border: 2px solid #555;
-  border-radius: 4px 4px;
-  padding: 4px 12px;
+::placeholder {
+  text-align: left;
 }
 
 table {
@@ -48,7 +57,7 @@ th {
 }
 
 th:first-child {
-  width: 40%;
+  width: 45%;
 }
 
 .money {
@@ -61,14 +70,16 @@ th:first-child {
   color: #775;
 }
 
-fieldset {
-  border: 1px dashed #ccc;
+.new-person {
   margin: 0;
-  padding: 8px;
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: auto 1fr;
   grid-gap: 8px;
+}
+
+.new-person :first-child {
+  grid-column: span 2;
 }
 
 legend {

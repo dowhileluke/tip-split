@@ -22,12 +22,13 @@ export default function StakeSelect({ value, onChange, onBlur, zero }: StakeSele
       value={value}
       onChange={e => onChange(toStake(e))}
       onBlur={() => onBlur?.()}
+      className="accent"
     >
-      <option value="4">100%</option>
-      <option value="3">75%</option>
-      <option value="2">50%</option>
-      <option value="1">25%</option>
-      {zero && <option value="0">{zero === true ? '0%' : zero}</option>}
+      <option value="4">1</option>
+      <option value="3">&frac34;</option>
+      <option value="2">&frac12;</option>
+      <option value="1">&frac14;</option>
+      {zero && <option value="0">{zero === true ? '0' : zero}</option>}
     </select>
   )
 }

@@ -5,6 +5,7 @@ export type MoneyInputProps = {
   value: number | null,
   onChange: (value: number | null) => void,
   onBlur?: () => void,
+  placeholder?: string,
 }
 
 function shortFormat(n: number | null) {
@@ -15,7 +16,8 @@ function shortFormat(n: number | null) {
   return f
 }
 
-function MoneyInput({ value, onChange, onBlur }: MoneyInputProps, fwdRef: Ref<HTMLInputElement>) {
+function MoneyInput(props: MoneyInputProps, fwdRef: Ref<HTMLInputElement>) {
+  const { value, onChange, onBlur, placeholder } = props
   const [centValue, setCentValue] = useState(value)
   const [textValue, setTextValue] = useState(() => shortFormat(value))
   const [isTouched, setIsTouched] = useState(false)
@@ -51,6 +53,7 @@ function MoneyInput({ value, onChange, onBlur }: MoneyInputProps, fwdRef: Ref<HT
       value={textValue}
       onChange={handleChange}
       onBlur={handleBlur}
+      placeholder={placeholder}
       required={isTouched}
       className="money"
       inputMode="decimal"
