@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import Layout from './components/Layout'
 import BreakdownTable from './components/BreakdownTable'
 import MoneyForm from './components/MoneyForm'
 import NewPersonForm from './components/NewPersonForm'
@@ -41,19 +41,27 @@ function App() {
   const moneyForm = (<MoneyForm value={tips} onChange={setTips} onSubmit={begin} />)
 
   // hide UI until money amount has been entered
-  if (!hasBegun) return moneyForm
+  if (!hasBegun) {
+    return (
+      <Layout foot={moneyForm} />
+    )
+  }
 
   const [breakdown, unassigned] = getBreakdown(tips || 0, people)
 
   return (
-    <>
-      {moneyForm}
-      <BreakdownTable list={breakdown} onChange={setPeople} />
-      <div className="note">
-        {unassigned > 0 && `${formatMoney(unassigned)} is unassigned`}
-      </div>
-      <NewPersonForm onSubmit={p => setPeople(prev => [...prev, p])} />
-    </>
+    <Layout
+      head={moneyForm}
+      main={
+        <>
+          <BreakdownTable list={breakdown} onChange={setPeople} />
+          <div className="note">
+            {unassigned > 0 && `${formatMoney(unassigned)} is unassigned`}
+          </div>
+        </>
+      }
+      foot={<NewPersonForm onSubmit={p => setPeople(prev => [...prev, p])} />}
+    />
   )
 }
 

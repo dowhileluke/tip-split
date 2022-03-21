@@ -1,5 +1,6 @@
 import { BreakdownPerson, Stake, Person } from '../types'
 import StakeSelect from './StakeSelect'
+import { Table } from './themed'
 import { formatMoney } from '../money'
 
 type BreakdownTableProps = {
@@ -24,7 +25,7 @@ export default function BreakdownTable({ list, onChange }: BreakdownTableProps) 
   }
 
   return (
-    <table>
+    <Table>
       <thead>
         <tr>
           <th>Name</th>
@@ -43,6 +44,6 @@ export default function BreakdownTable({ list, onChange }: BreakdownTableProps) 
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   )
 }

@@ -1,4 +1,5 @@
 import { FormEvent, useRef, useState } from 'react'
+import { Form } from './themed'
 import type { Stake, Person } from '../types'
 import StakeSelect from './StakeSelect'
 
@@ -30,10 +31,10 @@ export default function NewPersonForm({ onSubmit }: NewPersonFormProps) {
   }
 
   return (
-    <form className="new-person" onSubmit={handleSubmit}>
+    <Form className="new-person" onSubmit={handleSubmit}>
       <input ref={ref} value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
       <StakeSelect value={stake} onChange={setStake} />
       <button>Add Person</button>
-    </form>
+    </Form>
   )
 }
