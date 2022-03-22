@@ -1,5 +1,6 @@
-import { ReactNode } from 'react'
-import styled, { css } from 'styled-components'
+import type { ReactNode } from 'react'
+import styled from 'styled-components'
+import { fullWidth } from './themed'
 
 type LayoutProps = {
   head?: ReactNode,
@@ -7,9 +8,8 @@ type LayoutProps = {
   foot?: ReactNode,
 }
 
-const shared = css`
-  width: 100%;
-  box-sizing: border-box;
+const shared = `
+  ${fullWidth}
   padding: 8px;
 `
 

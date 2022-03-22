@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react'
+import { Select } from './themed'
 import type { Stake } from '../types'
 
 type StakeSelectProps = {
@@ -18,7 +19,7 @@ function toStake(e: ChangeEvent<HTMLSelectElement>): Stake {
 
 export default function StakeSelect({ value, onChange, onBlur, zero }: StakeSelectProps) {
   return (
-    <select
+    <Select
       value={value}
       onChange={e => onChange(toStake(e))}
       onBlur={() => onBlur?.()}
@@ -29,6 +30,6 @@ export default function StakeSelect({ value, onChange, onBlur, zero }: StakeSele
       <option value="2">&frac12;</option>
       <option value="1">&frac14;</option>
       {zero && <option value="0">{zero === true ? '0' : zero}</option>}
-    </select>
+    </Select>
   )
 }

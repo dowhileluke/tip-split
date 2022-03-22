@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Note } from './components/themed'
 import Layout from './components/Layout'
 import BreakdownTable from './components/BreakdownTable'
 import MoneyForm from './components/MoneyForm'
@@ -55,9 +56,7 @@ function App() {
       main={
         <>
           <BreakdownTable list={breakdown} onChange={setPeople} />
-          <div className="note">
-            {unassigned > 0 && `${formatMoney(unassigned)} is unassigned`}
-          </div>
+          <Note>{unassigned > 0 && `${formatMoney(unassigned)} is unassigned`}</Note>
         </>
       }
       foot={<NewPersonForm onSubmit={p => setPeople(prev => [...prev, p])} />}
