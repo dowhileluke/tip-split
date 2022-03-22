@@ -1,10 +1,24 @@
 import { FormEvent, useRef, useState } from 'react'
+import styled from 'styled-components'
+import { Form, Input, Button } from './themed'
 import type { Stake, Person } from '../types'
 import StakeSelect from './StakeSelect'
 
 type NewPersonFormProps = {
   onSubmit: (person: Person) => void,
 }
+
+const GridForm = styled(Form)`
+  margin: 0;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+
+  & :first-child {
+    grid-column: span 2;
+  }
+`
 
 let personId = 0
 
@@ -30,10 +44,10 @@ export default function NewPersonForm({ onSubmit }: NewPersonFormProps) {
   }
 
   return (
-    <form className="new-person" onSubmit={handleSubmit}>
-      <input ref={ref} value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
+    <GridForm onSubmit={handleSubmit}>
+      <Input ref={ref} value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
       <StakeSelect value={stake} onChange={setStake} />
-      <button>Add Person</button>
-    </form>
+      <Button>Add Person</Button>
+    </GridForm>
   )
 }

@@ -1,4 +1,5 @@
 import { FormEvent } from 'react'
+import { Form } from './themed'
 import MoneyInput from './MoneyInput'
 
 type MoneyFormProps = {
@@ -19,11 +20,11 @@ export default function MoneyForm({ value, onChange, onSubmit }: MoneyFormProps)
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>
         Total Tips:
         <MoneyInput value={value} onChange={onChange} onBlur={submit} placeholder="Enter amount" />
       </label>
-    </form>
+    </Form>
   )
 }

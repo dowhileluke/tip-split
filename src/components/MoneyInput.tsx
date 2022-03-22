@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, Ref, forwardRef } from 'react'
+import { Input } from './themed'
 import { formatMoney, parseMoney } from '../money'
 
 export type MoneyInputProps = {
@@ -48,7 +49,7 @@ function MoneyInput(props: MoneyInputProps, fwdRef: Ref<HTMLInputElement>) {
   }
 
   return (
-    <input
+    <Input
       ref={fwdRef}
       value={textValue}
       onChange={handleChange}
