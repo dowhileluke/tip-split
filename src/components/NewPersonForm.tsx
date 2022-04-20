@@ -9,7 +9,6 @@ type NewPersonFormProps = {
 }
 
 const GridForm = styled(Form)`
-  margin: 0;
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: auto 1fr;
